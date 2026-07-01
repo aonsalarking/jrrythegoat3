@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jerry The GOAT</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+height:100vh;
+overflow:hidden;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(-45deg,#ff0066,#6a00ff,#00d4ff,#00ff99);
+background-size:400% 400%;
+animation:bgMove 12s ease infinite;
+cursor:none;
+}
+
+@keyframes bgMove{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+.container{
+text-align:center;
+z-index:2;
+}
+
+h1{
+font-size:80px;
+text-transform:uppercase;
+font-weight:bold;
+background:linear-gradient(90deg,#fff,#ffff00,#00ffff,#ff00ff,#fff);
+background-size:400%;
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+animation:rainbow 6s linear infinite,pulse 2s infinite;
+text-shadow:0 0 40px white;
+}
+
+@keyframes rainbow{
+0%{background-position:0%;}
+100%{background-position:400%;}
+}
+
+@keyframes pulse{
+50%{transform:scale(1.08);}
+}
+
+p{
+color:white;
+font-size:24px;
+margin-top:20px;
+text-shadow:0 0 10px white;
+}
+
+button{
+margin-top:35px;
+padding:20px 45px;
+font-size:24px;
+border:none;
+border-radius:60px;
+background:white;
+color:#6a00ff;
+font-weight:bold;
+cursor:pointer;
+transition:.3s;
+box-shadow:0 0 30px white;
+}
+
+button:hover{
+transform:scale(1.15) rotate(-3deg);
+background:#ffff00;
+}
+
+.counter{
+margin-top:25px;
+font-size:35px;
+color:white;
+}
+
+.mouse{
+position:fixed;
+width:25px;
+height:25px;
+border-radius:50%;
+background:white;
+pointer-events:none;
+mix-blend-mode:difference;
+box-shadow:0 0 30px white;
+transform:translate(-50%,-50%);
+z-index:999;
+}
+
+.star{
+position:absolute;
+width:6px;
+height:6px;
+background:white;
+border-radius:50%;
+animation:float linear infinite;
+}
+
+@keyframes float{
+from{
+transform:translateY(110vh);
+opacity:1;
+}
+to{
+transform:translateY(-10vh);
+opacity:0;
+}
+}
+
+.pop{
+position:absolute;
+font-size:30px;
+pointer-events:none;
+animation:boom 1s forwards;
+}
+
+@keyframes boom{
+to{
+transform:translateY(-120px) scale(2);
+opacity:0;
+}
+}
+</style>
+</head>
+<body>
+
+<div class="mouse"></div>
+
+<div class="container">
+
+<h1>🐐 JERRY IS THE GOAT 🐐</h1>
+
+<p>The coolest website on the internet.</p>
+
+<button onclick="power()">CLICK FOR JERRY POWER</button>
+
+<div class="counter">
+Jerry Power:
+<span id="count">0</span>
+</div>
+
+</div>
+
+<script>
+
+const mouse=document.querySelector(".mouse");
+
+document.addEventListener("mousemove",e=>{
+mouse.style.left=e.clientX+"px";
+mouse.style.top=e.clientY+"px";
+});
+
+for(let i=0;i<180;i++){
+
+let s=document.createElement("div");
+s.className="star";
+
+s.style.left=Math.random()*100+"vw";
+s.style.animationDuration=(5+Math.random()*10)+"s";
+s.style.animationDelay=Math.random()*10+"s";
+
+document.body.appendChild(s);
+
+}
+
+let count=0;
+
+function power(){
+
+count++;
+
+document.getElementById("count").innerText=count;
+
+for(let i=0;i<80;i++){
+
+let emoji=document.createElement("div");
+emoji.className="pop";
+emoji.innerHTML=["🐐","⭐","🔥","✨","💥","🎉"][Math.floor(Math.random()*6)];
+
+emoji.style.left=(window.innerWidth/2+(Math.random()-0.5)*500)+"px";
+emoji.style.top=(window.innerHeight/2+(Math.random()-0.5)*300)+"px";
+
+document.body.appendChild(emoji);
+
+setTimeout(()=>{
+emoji.remove();
+},1000);
+
+}
+
+}
+
+document.addEventListener("click",e=>{
+
+for(let i=0;i<25;i++){
+
+let x=document.createElement("div");
+
+x.className="pop";
+
+x.innerHTML="✨";
+
+x.style.left=(e.clientX+(Math.random()-0.5)*120)+"px";
+x.style.top=(e.clientY+(Math.random()-0.5)*120)+"px";
+
+document.body.appendChild(x);
+
+setTimeout(()=>x.remove(),1000);
+
+}
+
+});
+
+</script>
+
+</body>
+</html>
